@@ -2,17 +2,17 @@
 //CARDS USED FOR GAUGE UI LIKE SPEEDOMETER
 import React from "react";
 import {
-    ResponsiveContainer,
-    RadialBarChart,
-    RadialBar,
-    PolarAngleAxis
+    ResponsiveContainer, //to make chart responsive to screen
+    RadialBarChart, //Circular/semi-circle chart
+    RadialBar, //actuall filled bar
+    PolarAngleAxis //control angle/range of chart
 } from "recharts";
 
 const GaugeCard = ({
-    gauge = {},
-    colorInfo = {},
-    timeFrameLabel = "",
-    highlightNegative = false,
+    gauge = {}, //data of gauge
+    colorInfo = {}, //colors
+    timeFrameLabel = "", //e.g. this month
+    highlightNegative = false, //to highlight negative value or not
 }) => {
     const { name = "Metric", value = 0, max = 100 } = gauge;
     const isNegative = value < 0;

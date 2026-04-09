@@ -17,8 +17,8 @@ const AddTransactionModal = ({
     // Get current date in YYYY-MM-DD format
     const today = new Date();
     const currentYear = today.getFullYear();
-    const currentDate = today.toISOString().split('T')[0];
-    const minDate = `${currentYear}-01-01`;
+    const currentDate = today.toISOString().split('T')[0];  //todays date is converted to ISO format then it is split from T and the first element which is the date is taken
+    const minDate = `${currentYear}-01-01`; //start of current year
 
     const colorClass = modalStyles.colorClasses[color];
 
