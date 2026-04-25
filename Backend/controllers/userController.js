@@ -1,6 +1,6 @@
 import User from "../models/userModel.js";
 import validator from "validator";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const JWT_SECRET = 'your_jwt_secret_key';
@@ -36,19 +36,19 @@ export async function registerUser(req, res) {
                 success: false,
                 message: "User already exists"
             });
-            const hashed = await bcrypt.hash(password, 10); //hashing password using bcrypt
-            const user = await User.create({
-                name,
-                email,
-                password: hashed
-            });
-            const token = createToken(user._id); //MongoDB generates an id for each user(unique) using it to create token
-
-            res.status(201).json({
-                success: true,
-                token, user: { id: user._id, name: user.name, email: user.email }
-            });
         }
+        const hashed = await bcrypt.hash(password, 10); //hashing password using bcrypt
+        const user = await User.create({
+            name,
+            email,
+            password: hashed
+        });
+        const token = createToken(user._id); //MongoDB generates an id for each user(unique) using it to create token
+
+        res.status(201).json({
+            success: true,
+            token, user: { id: user._id, name: user.name, email: user.email }
+        });
     } catch (err) {
         console.error(err);
         res.status(500).json({
@@ -100,7 +100,7 @@ export async function loginUser(req, res) {
 //GET LOGIN USER DETAILS
 export async function getCurrentUser(req, res) {
     try {
-        const user = await User.findById(req.user.id).select("name email");
+        const user = await User.findById(req.user.id).select("name email"); //select brings only name and email from DB
         if (!user) {
             return res.status(404).json({
                 success: false,
@@ -128,7 +128,7 @@ export async function updateProfile(req, res) {
         });
     }
     try {
-        const exists = await User.findOne({ email, _id: { $ne: req.user.id } });
+        const exists = await User.findOne({ email, _id: { $ne: req.user.id } }); //checking if this email belongs to any other user also, excluding current user($ne means not equal)
         if (exists) {
             return res.status(409).json({
                 success: false,
@@ -138,7 +138,7 @@ export async function updateProfile(req, res) {
         const user = await User.findByIdAndUpdate(
             req.user.id,
             { name, email },
-            { new: true, runValidators: true, select: "name email" }
+            { new: true, runValidators: true, select: "name email" } //select return only name, email. runValidators checks schema rules followed. new returns updated version of data
         );
         res.json({
             success: true,
@@ -155,7 +155,7 @@ export async function updateProfile(req, res) {
 }
 
 // CHANGE USER PASSWORD
-export async function changePassword(req, res) {
+export async function updatePassword(req, res) {
     const { currentPassword, newPassword } = req.body;
     if (!currentPassword || !newPassword || newPassword.length < 8) {
         return res.status(400).json({
@@ -179,8 +179,8 @@ export async function changePassword(req, res) {
             });
         }
         const hashed = await bcrypt.hash(newPassword, 10);
-        user.password = hashed;
-        await user.save();
+        user.password = hashed; //updated password
+        await user.save(); // saves the updated password in db
         res.json({
             success: true,
             message: "Password changed successfully"
