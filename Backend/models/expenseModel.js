@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const incomeSchema = new mongoose.Schema({
+const expenseSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true
@@ -24,10 +24,10 @@ const incomeSchema = new mongoose.Schema({
     },
     type: {
         type: String,
-        default: "income",
-    }
+        default: "expense",
+    },
 }, { timestamps: true }); //by timestamps mongoose create two fields createdAt and updatedAt in document 
 
-const incomeModel = mongoose.models.income || mongoose.model("income", incomeSchema);
+const expenseModel = mongoose.models.expense || mongoose.model("expense", expenseSchema);
 
-export default incomeModel;
+export default expenseModel;

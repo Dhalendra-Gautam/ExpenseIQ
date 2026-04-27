@@ -1,12 +1,11 @@
-import incomeModel from "../models/incomeModel.js";
-import XLSX from "xlsx";
+import expenseModel from "../models/expenseModel.js";
 import getDateRange from "../utils/dataFilter.js";
+import XLSX from "xlsx";
 
-//ADD INCOME
-export async function addIncome(req, res) {
+//ADD EXPENSE
+export async function addExpense(req, res) {
     const userId = req.user._id;
     const { description, amount, category, date } = req.body;
-
     try {
         if (!description || !amount || !category || !date) {
             return res.status(400).json({
@@ -14,17 +13,17 @@ export async function addIncome(req, res) {
                 message: "All fields are required"
             });
         }
-        const newIncome = new incomeModel({
+        const newExpense = new expenseModel({
             userId,
             description,
             amount,
             category,
             date: new Date(date)
         });
-        await newIncome.save();
+        await newExpense.save();
         res.json({
             success: true,
-            message: "Income added successfully"
+            message: "Expense added successfully"
         });
     }
     catch (err) {
@@ -36,12 +35,12 @@ export async function addIncome(req, res) {
     }
 }
 
-//GET ALL INCOMES
-export async function getAllIncome(req, res) {
+//GET ALL EXPENSES
+export async function getAllExpense(req, res) {
     const userId = req.user._id;
     try {
-        const incomes = await incomeModel.find({ userId }).sort({ date: -1 }); //sorted in asc.
-        res.json({ incomes });
+        const expenses = await expenseModel.find({ userId }).sort({ date: -1 });
+        res.json({ expenses });
     }
     catch (err) {
         console.log(err);
@@ -52,10 +51,9 @@ export async function getAllIncome(req, res) {
     }
 }
 
-//UPDATE AN INCOME
-export async function updateIncome(req, res) {
+//UPDATE AN EXPENSE
+export async function updateExpense(req, res) {
     const { id } = req.params;
-    const userId = req.user._id;
     const { description, amount } = req.body;
     if (!id || !description || !amount) {
         return res.status(400).json({
@@ -64,20 +62,21 @@ export async function updateIncome(req, res) {
         });
     }
     try {
-        const updatedIncome = await incomeModel.findOneAndUpdate(
+        const updatedExpense = await expenseModel.findOneAndUpdate(
             { _id: id, userId },
             { description, amount },
-            { new: true });
-        if (!updatedIncome) {
+            { new: true }
+        );
+        if (!updatedExpense) {
             return res.status(404).json({
                 success: false,
-                message: "Income not found"
+                message: "Expense not found"
             });
         }
         res.status(200).json({
             success: true,
-            message: "Income updated successfully",
-            data: updatedIncome
+            message: "Expense updated successfully",
+            data: updatedExpense
         });
     }
     catch (err) {
@@ -89,15 +88,15 @@ export async function updateIncome(req, res) {
     }
 }
 
-//DELETE AN INCOME
-export async function deleteIncome(req, res) {
+//DELETE AN EXPENSE
+export async function deleteExpense(req, res) {
     const { id } = req.params;
     try {
-        const income = await incomeModel.findByIdAndDelete({ _id: id });
-        if (!income) {
+        const expense = await expenseModel.findByIdAndDelete({ _id: id });
+        if (!expense) {
             return res.status(404).json({
                 success: false,
-                message: "Income not found"
+                message: "Expense not found"
             });
         }
         res.status(200).json({
@@ -114,26 +113,25 @@ export async function deleteIncome(req, res) {
     }
 }
 
-
-//TO DOWNLOAD DATA IN EXCEL SHEET
-export async function downloadIncomeExcel(req, res) {
+//TO DOWNLOAD EXPENSES IN EXCEL SHEET
+export async function downloadExpenseExcel(req, res) {
     const userId = req.user._id;
     try {
-        const income = await incomeModel.find({ userId }).sort({ date: -1 });
-        const plainData = income.map((inc) => { //looping through all incomes in DB and storing in array of objects
+        const expense = await expenseModel.find({ userId }).sort({ date: -1 });
+        const plainData = expense.map((exp) => { //looping through all incomes in DB and storing in array of objects
             return {
-                Description: inc.description,
-                Amount: inc.amount,
-                Category: inc.category,
-                Date: new Date(inc.date).toLocaleDateString()
+                Description: exp.description,
+                Amount: exp.amount,
+                Category: exp.category,
+                Date: new Date(exp.date).toLocaleDateString()
             };
         });
 
         const worksheet = XLSX.utils.json_to_sheet(plainData); //converts array of objects to excel worksheet format
         const workbook = XLSX.utils.book_new(); //creates a new workbook(excel file) where we store sheets
-        XLSX.utils.book_append_sheet(workbook, worksheet, "IncomeModel"); //appends the worksheet to the workbook
-        XLSX.writeFile(workbook, "income_details.xlsx"); //saving the file in server memory for download
-        res.download("income_details.xlsx"); //sends the file to the client for download
+        XLSX.utils.book_append_sheet(workbook, worksheet, "ExpenseModel"); //appends the worksheet to the workbook
+        XLSX.writeFile(workbook, "expense_details.xlsx"); //saving the file in server memory for download
+        res.download("expense_details.xlsx"); //sends the file to the client for download
     }
     catch (err) {
         console.log(err);
@@ -144,27 +142,27 @@ export async function downloadIncomeExcel(req, res) {
     }
 }
 
-//TO GET INCOME OVERVIEW
-export async function getIncomeOverview(req, res) {
+//TO GET EXPENSE OVERVIEW
+export async function getExpenseOverview(req, res) {
     try {
         const userId = req.user._id;
         const { range = "monthly" } = req.query;
         const { start, end } = getDateRange(range); //it calculates start and end date according to range
-        const incomes = await incomeModel.find({
+        const expenses = await expenseModel.find({
             userId,
             date: { $gte: start, $lte: end }
         }).sort({ date: -1 }); //sorts the incomes in descending order of date
 
-        const totalIncome = incomes.reduce((acc, cur) => acc + cur.amount, 0); //reduce method finds the total income by adding all incomes
-        const averageIncome = incomes.length > 0 ? totalIncome / incomes.length : 0; //finds the average income by dividing total income by number of incomes
-        const numberOfTransactions = incomes.length;
-        const recentTransactions = incomes.slice(0, 9); //it gives first 9 recent transactions
+        const totalExpense = expenses.reduce((acc, cur) => acc + cur.amount, 0); //reduce method finds the total income by adding all incomes
+        const averageExpense = expenses.length > 0 ? totalExpense / expenses.length : 0; //finds the average income by dividing total income by number of incomes
+        const numberOfTransactions = expenses.length;
+        const recentTransactions = expenses.slice(0, 5); //it gives first 9 recent transactions
 
         res.json({
             success: true,
             data: {
-                totalIncome,
-                averageIncome,
+                totalExpense,
+                averageExpense,
                 numberOfTransactions,
                 recentTransactions,
                 range
