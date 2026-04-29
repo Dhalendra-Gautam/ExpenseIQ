@@ -8,13 +8,13 @@ import { useNavigate } from 'react-router-dom';
 const App = () => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); //hook or tool to navigate between pages
 
-  const clearAuth = () => {
+  const clearAuth = () => { //to remove user and token on logout from browser
     try {
-      localStorage.removeItem("token");
+      localStorage.removeItem("token"); //removes token from permanent storage of browser
       localStorage.removeItem("user");
-      sessionStorage.removeItem("token");
+      sessionStorage.removeItem("token");//removes token from temporary storage of browser
       sessionStorage.removeItem("user");
     } catch (err) {
       console.error("clearAuth error:", err);
@@ -22,15 +22,15 @@ const App = () => {
     setUser(null);
     setToken(null);
   }
-  const handleLogout = () => {
+  const handleLogout = () => { //actual logout function
     clearAuth();
     navigate("/login");
   }
   return (
     <>
-      <Routes>
+      <Routes> {/*It stores all the routes of the application  */}
         <Route element={<Layout />}>
-          <Route path='/' element={<Dashboard />} />
+          <Route path='/' element={<Dashboard />} /> {/*Dashboard will open inside layout */}
         </Route>
       </Routes>
     </>
