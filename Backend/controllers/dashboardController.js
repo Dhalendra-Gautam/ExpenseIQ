@@ -9,7 +9,7 @@ export async function getDashboardOverview(req, res) {
         const incomes = await incomeModel.find({
             userId,
             date: { $gte: startOfMonth, $lte: now }
-        }).lean(); //lean() -> returns plain JS objects imporving speed
+        }).lean(); //lean() -> returns plain JS objects improving speed
         const expenses = await expenseModel.find({
             userId,
             date: { $gte: startOfMonth, $lte: now }
@@ -20,12 +20,12 @@ export async function getDashboardOverview(req, res) {
         const monthlyIncome = incomes.reduce((acc, cur) => acc + Number(cur.amount || 0), 0);
         const monthlyExpense = expenses.reduce((acc, cur) => acc + Number(cur.amount || 0), 0);
         const savings = monthlyIncome - monthlyExpense;
-        const savingsRate = monthlyIncome === 0 ? 0 : Math.round((savings / monthlyIncome) * 100);
+        const savingsRate = monthlyIncome === 0 ? 0 : Math.round((savings / monthlyIncome) * 100); //(savings / monthlyIncome) * 100
 
         const recentTransactions = [
             ...incomes.map((i) => ({ ...i, type: "income" })),
             ...expenses.map((e) => ({ ...e, type: "expense" })),
-        ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));//combined income and expenses and sorted to show in frontend
 
         const spendByCategory = {};
         for (const exp of expenses) {
@@ -37,18 +37,18 @@ export async function getDashboardOverview(req, res) {
             category,
             amount,
             percent: monthlyExpense === 0 ? 0 : Math.round((amount / monthlyExpense) * 100),
-        })); //for chart
+        })); //for chart - same catergory data but formated to fit for charts
 
         res.status(200).json({
             success: true,
             data: {
-                monthlyIncome,
-                monthlyExpense,
-                savings,
-                savingsRate,
-                recentTransactions,
-                spendByCategory,
-                expenseDistribution
+                monthlyIncome,//number
+                monthlyExpense,//number
+                savings,//number
+                savingsRate,//number
+                recentTransactions, //array of objects
+                spendByCategory, //object with category and amount
+                expenseDistribution //array of objects with category amount and percentage
             }
         });
     }
