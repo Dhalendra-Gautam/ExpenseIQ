@@ -624,7 +624,7 @@ export const sidebarStyles = {
 };
 
 // Helper function to combine class names
-export const cn = (...classes) => classes.filter(Boolean).join(" "); //it act as boolean
+export const cn = (...classes) => classes.filter(Boolean).join(" "); //it act as boolean //it combines multiple css classes
 
 // assets/dummyStyles.js
 
