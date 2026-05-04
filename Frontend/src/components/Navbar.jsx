@@ -68,10 +68,7 @@ const Navbar = ({ user: propUser, onLogout }) => {//renaming user prop(now named
                 {/*logo*/}
                 <div onClick={() => navigate("/")}
                     className={navbarStyles.logoContainer}>
-                    <div className={navbarStyles.logoImage}>
-                        <img src={img1} alt="logo" />
-                    </div>
-                    <span className={navbarStyles.logoText}>ExpenseIQ</span>
+                    <img src={img1} alt="logo" className={navbarStyles.logoImage} />
                 </div>
                 {/*If user is present */}
                 {user && ( //if user is present then show user container

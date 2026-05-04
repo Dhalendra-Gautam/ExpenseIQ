@@ -415,8 +415,8 @@ export const navbarStyles = {
   container: "flex items-center justify-between px-4 py-3 md:px-8 max-w-7xl mx-auto",
 
   // Logo styles
-  logoContainer: "flex items-center gap-0 cursor-pointer",
-  logoImage: "w-15 h-15 rounded-xl overflow-hidden",
+  logoContainer: "flex items-center h-10 max-h-10 overflow-hidden cursor-pointer",
+  logoImage: "h-full w-auto object-contain",
 
   // Text styles
   logoText: "lg:text-3xl md:text-3xl text-2xl text-gray-900 font-[550] lobster-regular",
@@ -424,7 +424,7 @@ export const navbarStyles = {
   // User profile styles
   userContainer: "relative",
   userButton: "flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors",
-  userAvatar: "w-9 h-9 flex items-center justify-center rounded-full bg-gradient-to-br from-teal-600 to-cyan-500 text-white font-bold text-lg",
+  userAvatar: "w-9 h-9 flex items-center justify-center rounded-full bg-gradient-to-br from-[#63b015] to-[#4e8e10] text-white font-bold text-lg",
   statusIndicator: "absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white",
   userTextContainer: "text-left hidden md:block",
   userName: "text-sm font-medium text-gray-800 truncate max-w-[120px]",
@@ -434,7 +434,7 @@ export const navbarStyles = {
   // Dropdown menu styles
   dropdownMenu: "absolute top-14 right-0 w-56 bg-white rounded-xl shadow-lg border border-gray-100 z-50",
   dropdownHeader: "px-4 py-3 border-b border-gray-100",
-  dropdownAvatar: "w-10 h-10 rounded-full bg-gradient-to-br from-teal-600 to-cyan-500 flex items-center justify-center text-white font-bold text-lg",
+  dropdownAvatar: "w-10 h-10 rounded-full bg-gradient-to-br from-[#63b015] to-[#4e8e10] flex items-center justify-center text-white font-bold text-lg",
   dropdownName: "text-sm text-gray-800 ",
   dropdownEmail: "text-xs text-gray-500",
 
@@ -551,7 +551,7 @@ export const sidebarStyles = {
   },
 
   userInitials: {
-    base: "w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-400 to-teal-500 flex items-center justify-center text-white font-bold text-xl"
+    base: "w-12 h-12 rounded-xl bg-[#63b015] flex items-center justify-center text-white font-bold text-xl"
   },
 
   // Menu items
@@ -561,7 +561,7 @@ export const sidebarStyles = {
 
   menuItem: {
     base: "relative flex items-center gap-3 py-3 rounded-xl font-medium transition-all duration-200",
-    active: "text-teal-600 bg-teal-50",
+    active: "text-[#63b015] bg-[#eef8e7]",
     inactive: "text-gray-600 hover:text-teal-700 hover:bg-gray-50",
     collapsed: "justify-center px-0 mx-2",
     expanded: "px-4"
@@ -572,7 +572,7 @@ export const sidebarStyles = {
     inactive: "text-gray-500"
   },
 
-  activeIndicator: "absolute right-4 w-2 h-2 bg-teal-400 rounded-full animate-ping",
+  activeIndicator: "absolute right-4 w-2 h-2 bg-[#63b015] rounded-full animate-ping",
 
   // Toggle button
   toggleButton: {

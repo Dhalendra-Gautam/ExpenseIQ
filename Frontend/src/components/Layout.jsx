@@ -3,7 +3,7 @@ import { styles } from '../assets/dummyStyles';
 import Navbar from './Navbar';
 import Sidebar from "./Sidebar";
 import { useState, useEffect } from 'react';
-import { Car, Home, Utensils, ShoppingCart, Gift, Zap, Activity, ArrowUp, CreditCard, PiggyBank, IndianRupee, ArrowDown, TrendingUp, Clock, RefreshCw, DollarSign, IndianRupeeIcon, Info } from 'lucide-react';
+import { Car, Home, Utensils, ShoppingCart, Gift, Zap, Activity, ArrowUp, CreditCard, PiggyBank, IndianRupee, ArrowDown, TrendingUp, Clock, RefreshCw, DollarSign, IndianRupeeIcon, Info, ChevronDown, PieChart } from 'lucide-react';
 import axios from 'axios'; //for making api call to backend server for sending and receiving data
 import { Outlet } from 'react-router-dom';
 
@@ -458,11 +458,91 @@ const Layout = ({ onLogout, user }) => {//the props  passed to Layout will be pa
                                                 </div>
                                             </div>
                                             <span className={styles.colors.transaction.text(type)}>
-                                                {type === "income" ? "+" : "-"} ${Number(amount)}
+                                                {type === "income" ? "+" : "-"} &#8377;{Number(amount)}
                                             </span>
                                         </div>
                                     );
                                 })}
+
+                                {transactions.length === 0 ? (
+                                    <div className={styles.transactions.emptyState}>
+                                        <div className={styles.transactions.emptyIconContainer}>
+                                            <Clock className={styles.transactions.emptyIcon} />
+                                        </div>
+                                        <p className={styles.transactions.emptyText}>
+                                            No recent transactions
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <div className={styles.transactions.viewAllContainer}>
+                                        <button onClick={() => setShowAllTransactions(!showAllTransactions)}
+                                            className={styles.transactions.viewAllButton}
+                                        >
+                                            {showAllTransactions ? (
+                                                <>
+                                                    <ChevronDown className=' w-5 h-5' />
+                                                    Show less
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <ChevronDown className=' w-5 h-5' />
+                                                    View all transactions ({transactions.length})
+                                                </>
+                                            )}
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        {/*SPENDING BY CATEGORY CARD */}
+                        <div className={styles.cards.base}>
+                            <h3 className={styles.cards.title}>
+                                <PieChart className={styles.categories.titleIcon} />
+                                Spending by Category
+                            </h3>
+
+                            <div className={styles.categories.list}>
+                                {topCategories.map(([category, amount]) => (
+                                    <div key={category} className={styles.categories.categoryItem}>
+                                        <div className='flex items-center gap-3'>
+                                            <div className={styles.categories.categoryIconContainer}>
+                                                {CATEGORY_ICONS[category] || (
+                                                    <IndianRupeeIcon className={styles.categoryIcon} />
+                                                )}
+                                            </div>
+                                            <span className={styles.categories.categoryName}>
+                                                {category}
+                                            </span>
+                                        </div>
+                                        <span className={styles.categories.categoryAmount}>
+                                            &#8377;{amount}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className={styles.categories.summaryContainer}>
+                                <div className={styles.categories.summaryGrid}>
+                                    <div className={styles.categories.summaryIncomeCard}>
+                                        <p className={styles.categories.summaryTitle}>
+                                            Total Income
+                                        </p>
+                                        <p className={styles.categories.summaryValue}>
+                                            &#8377;{stats.allTimeIncome.toLocaleString()}
+                                        </p>
+                                    </div>
+
+                                    <div className={styles.categories.summaryExpenseCard}>
+                                        <p className={styles.categories.summaryTitle}>
+                                            Total Expenses
+                                        </p>
+                                        <p className={styles.categories.summaryValue}>
+                                            &#8377;{stats.allTimeExpenses.toLocaleString()}
+                                        </p>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
