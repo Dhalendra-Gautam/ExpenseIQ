@@ -507,7 +507,7 @@ const Layout = ({ onLogout, user }) => {//the props  passed to Layout will be pa
                                     <div key={category} className={styles.categories.categoryItem}>
                                         <div className='flex items-center gap-3'>
                                             <div className={styles.categories.categoryIconContainer}>
-                                                {CATEGORY_ICONS[category] || (
+                                                {CATEGORY_ICONS[category] || ( //CATEGORY_ICONS[category]  CATEGORY_ICONS is an object with keys as categories and values as icons || use default if category not found 
                                                     <IndianRupeeIcon className={styles.categoryIcon} />
                                                 )}
                                             </div>
