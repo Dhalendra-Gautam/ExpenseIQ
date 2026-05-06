@@ -7,17 +7,19 @@ import { User } from 'lucide-react';
 import { LogOut } from 'lucide-react';
 import axios from 'axios'; //for making api call to backend server
 
-const BASE_URL = "http://localhost:8000/api"
+const BASE_URL = "http://localhost:4000/api"
 
 const Navbar = ({ user: propUser, onLogout }) => {//renaming user prop(now named as propUser) to avoid confusion
     const navigate = useNavigate();//hook to navigate between pages
     const menuRef = useRef();//useRef is a hook which when written in an element then  it points(stores its reference) to that element, now we can use it to control element
     const [menuOpen, setMenuOpen] = useState(false);
+    const [user, setUser] = useState(
+        propUser || { //if in propUser nothing comes then define default empty user 
+            name: "",
+            email: ""
+        }
+    );
 
-    const user = propUser || { //if in propUser nothing comes then define default empty user 
-        name: "",
-        email: ""
-    };
 
     //To FETCH USER DATA FROM SERVER
     useEffect(() => {
