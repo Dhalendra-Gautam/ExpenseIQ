@@ -369,10 +369,10 @@ export const loginStyles = {
   cardContainer: "w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden",
 
   // Header styles
-  header: "bg-gradient-to-r from-teal-500 to-emerald-600 p-6 text-center",
+  header: "bg-gradient-to-r from-[#7acb1f] to-[#63b015] p-6 text-center relative",
   avatar: "w-20 h-20 mx-auto rounded-full bg-white/20 flex items-center justify-center mb-4",
   headerTitle: "text-2xl font-bold text-white",
-  headerSubtitle: "text-teal-100 mt-2",
+  headerSubtitle: "text-[#eef8e7] mt-2",
 
   // Form container
   formContainer: "p-8",
@@ -396,7 +396,7 @@ export const loginStyles = {
   checkboxLabel: "ml-2 block text-sm text-gray-700",
 
   // Button
-  button: "w-full bg-gradient-to-r from-teal-500 to-emerald-600 text-white py-3 rounded-xl font-medium shadow-md hover:shadow-lg transition-all flex items-center justify-center",
+  button: "w-full bg-gradient-to-r from-[#7acb1f] to-[#63b015] hover:from-[#84d624] hover:to-[#5aa013] text-white py-3 rounded-xl font-medium shadow-md hover:shadow-lg transition-all flex items-center justify-center",
   buttonDisabled: "opacity-80 cursor-not-allowed",
 
   // Sign up link
@@ -455,10 +455,10 @@ export const signupStyles = {
   cardContainer: "w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden",
 
   // Header styles (reusing from login with additions)
-  header: "bg-gradient-to-r from-teal-500 to-emerald-600 p-6 text-center relative",
+  header: "bg-gradient-to-r from-[#7acb1f] to-[#63b015] p-6 text-center relative",
   avatar: "w-20 h-20 mx-auto rounded-full bg-white/20 flex items-center justify-center mb-4",
   headerTitle: "text-2xl font-bold text-white",
-  headerSubtitle: "text-teal-100 mt-2",
+  headerSubtitle: "text-[#eef8e7] mt-2",
   backButton: "absolute top-4 left-4 p-2 text-white rounded-full hover:bg-white/10 transition-colors",
 
   // Form container (reusing from login)
@@ -482,7 +482,7 @@ export const signupStyles = {
   checkboxLabel: "ml-2 block text-sm text-gray-700",
 
   // Button (reusing from login)
-  button: "w-full bg-gradient-to-r from-teal-500 to-emerald-600 text-white py-3 rounded-xl font-medium shadow-md hover:shadow-lg transition-all flex items-center justify-center",
+  button: "w-full bg-gradient-to-r from-[#7acb1f] to-[#63b015] hover:from-[#84d624] hover:to-[#5aa013] text-white py-3 rounded-xl font-medium shadow-md hover:shadow-lg transition-all flex items-center justify-center",
   buttonDisabled: "opacity-80 cursor-not-allowed",
 
   // Sign in link (reusing from login with modifications)

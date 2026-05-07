@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import { useNavigate } from 'react-router-dom';
 import Login from './components/Login';
+import Signup from './components/Signup';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -50,6 +51,11 @@ const App = () => {
     navigate("/"); //after login
   }
 
+  const handleSignup = (userData, remember = false, tokenFromAPI = null) => {
+    persistAuth(userData, tokenFromAPI, remember); // save user details and token in browser
+    navigate("/"); //after signup navigate to the dashboard
+  }
+
   const handleLogout = () => { //actual logout function
     clearAuth();
     navigate("/login");
@@ -58,6 +64,7 @@ const App = () => {
     <>
       <Routes> {/*It stores all the routes of the application  */}
         <Route path='/login' element={<Login onLogin={handleLogin} />} />
+        <Route path='/register' element={<Signup onSignup={handleSignup} />} />
 
         <Route element={<Layout onLogout={handleLogout} user={user} />}>
           <Route path='/' element={<Dashboard />} /> {/*Dashboard will open inside layout */}
