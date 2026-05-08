@@ -41,9 +41,9 @@ const SignUp = ({ API_URL = "http://localhost:4000", onSignup, }) => {
         if (!name.trim()) {
             newErrors.name = "Name is required";
         }
-        if (!email.trim()) {
+        if (!email.trim()) { // to check if the email is not empty
             newErrors.email = "Email is required";
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
+        } else if (!/\S+@\S+\.\S+/.test(email)) { // !/\S+@\S+\.\S+/.test(email) .test() if given email mathes the pattern written her if yes it return true and ! make it false
             newErrors.email = "Email is invalid";
         }
         if (!password) {
@@ -53,16 +53,16 @@ const SignUp = ({ API_URL = "http://localhost:4000", onSignup, }) => {
         }
 
         setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
+        return Object.keys(newErrors).length === 0; //if object of errors is empty(=0) means no errors then return true . Object.keys() convert error object keys to array
     };
 
     //TO SIGNUP
     const handleSignup = async (e) => {
-        e.preventDefault();
-        setErrors({});
-        if (!validateForm()) return;
+        e.preventDefault(); //prevent default browser behavior
+        setErrors({}); //clear all errors
+        if (!validateForm()) return; //if form is not valid return
 
-        setIsLoading(true);
+        setIsLoading(true); //set loading to true
 
         try {
             const res = await axios.post(
@@ -78,7 +78,7 @@ const SignUp = ({ API_URL = "http://localhost:4000", onSignup, }) => {
                 const copy = { ...data };
                 delete copy.token;
                 delete copy.user;
-                if (Object.keys(copy).length) profile = copy;
+                if (Object.keys(copy).length) profile = copy; //checkin copy object is empty or not if not empty then it is user info
             }
 
             if (!profile && token) {

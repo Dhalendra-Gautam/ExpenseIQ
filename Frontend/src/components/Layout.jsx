@@ -3,11 +3,11 @@ import { styles } from '../assets/dummyStyles';
 import Navbar from './Navbar';
 import Sidebar from "./Sidebar";
 import { useState, useEffect } from 'react';
-import { Car, Home, Utensils, ShoppingCart, Gift, Zap, Activity, ArrowUp, CreditCard, PiggyBank, IndianRupee, ArrowDown, TrendingUp, Clock, RefreshCw, DollarSign, IndianRupeeIcon, Info, ChevronDown, PieChart } from 'lucide-react';
+import { Car, Home, Utensils, ShoppingCart, Gift, Zap, Activity, ArrowUp, CreditCard, PiggyBank, IndianRupee, ArrowDown, TrendingUp, Clock, RefreshCw, IndianRupeeIcon, Info, ChevronDown, PieChart } from 'lucide-react';
 import axios from 'axios'; //for making api call to backend server for sending and receiving data
 import { Outlet } from 'react-router-dom';
 
-const API_BASE = "http://localhost:8000/api";
+const API_BASE = "http://localhost:4000/api";
 const CATEGORY_ICONS = { //assigning icons based on category
     Food: <Utensils className="w-4 h-4" />,
     Housing: <Home className="w-4 h-4" />,
@@ -393,7 +393,7 @@ const Layout = ({ onLogout, user }) => {//the props  passed to Layout will be pa
                             </div>
                         </div>
                         <p className={styles.statCards.cardFooter}>
-                            {getSavingsRating(stats.savingRate)}
+                            {getSavingsRating(stats.savingsRate)}
                         </p>
                     </div>
 
@@ -438,7 +438,7 @@ const Layout = ({ onLogout, user }) => {//the props  passed to Layout will be pa
                                     return (
                                         <div key={id} className={styles.transactions.transactionItem}>
                                             <div className="flex items-center gap-1 md:gap-4 lg:gap-3">
-                                                <div className={`p-22 rounded-lg ${styles.colors.transactions.bg(type)}`}>
+                                                <div className={`p-2 rounded-lg ${styles.colors.transactions.bg(type)}`}>
                                                     {CATEGORY_ICONS[category] || (
                                                         <IndianRupeeIcon className={styles.transactions.icon} />
                                                     )}
@@ -508,7 +508,7 @@ const Layout = ({ onLogout, user }) => {//the props  passed to Layout will be pa
                                         <div className='flex items-center gap-3'>
                                             <div className={styles.categories.categoryIconContainer}>
                                                 {CATEGORY_ICONS[category] || ( //CATEGORY_ICONS[category]  CATEGORY_ICONS is an object with keys as categories and values as icons || use default if category not found 
-                                                    <IndianRupeeIcon className={styles.categoryIcon} />
+                                                    <IndianRupeeIcon className={styles.categories.categoryIcon} />
                                                 )}
                                             </div>
                                             <span className={styles.categories.categoryName}>
