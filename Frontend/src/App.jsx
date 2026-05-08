@@ -33,7 +33,7 @@ const ScrollToTop = () => {
   const location = useLocation();
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  }, [location.pathname]);
+  }, [location.pathname]); //this will run when the path((the URL) changes
   return null;
 }
 
@@ -78,7 +78,7 @@ const App = () => {
     setToken(null);
   }
 
-  //TO UPDATE THE USER DATA BITH IN STATE AND STORAGE
+  //TO UPDATE THE USER DATA WITH IN STATE AND STORAGE
   const updateUserData = (updatedUser) => {
     setUser(updatedUser);
 
@@ -110,10 +110,10 @@ const App = () => {
           return;
         }
 
-        if (!storedToken) {
+        if (storedToken) { //if no token found in browser
           try {
             const res = await axios.get(`${API_URL}/api/users/me`, {
-              headers: { Authorization: `Bearer ${storedToken}` }
+              headers: { Authorization: `Bearer ${storedToken}` } //sending the token to the backend
             });
             const profile = res.data;
             persistAuth(profile, storedToken, tokenFromLocal);
@@ -162,13 +162,13 @@ const App = () => {
 
   // TRANSACTION HELPERS
   const addTransaction = (newTransaction) =>
-    setTransactions((p) => [newTransaction, ...p]);
+    setTransactions((p) => [newTransaction, ...p]); //adding new transaction to the beginning of the array
   const editTransaction = (id, updatedTransaction) =>
     setTransactions((p) =>
-      p.map((t) => (t.id === id ? { ...updatedTransaction, id } : t)),
+      p.map((t) => (t.id === id ? { ...updatedTransaction, id } : t)), // loop all transactions and if id matches then update it else return the old transaction
     );
   const deleteTransaction = (id) =>
-    setTransactions((p) => p.filter((t) => t.id !== id));
+    setTransactions((p) => p.filter((t) => t.id !== id)); //filter function return all transaction except the one with the id that matches
   const refreshTransactions = () =>
     setTransactions(getTransactionsFromStorage());
 
