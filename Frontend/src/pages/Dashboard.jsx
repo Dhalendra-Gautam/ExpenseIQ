@@ -26,6 +26,7 @@ import axios from 'axios';
 import FinancialCard from '../components/FinancialCard';
 import GaugeCard from '../components/GaugeCard';
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+import AddTransactionModal from '../components/Add';
 
 const API_BASE = 'http://localhost:4000/api';
 
@@ -347,7 +348,7 @@ const Dashboard = () => {
                 });
             }
             await refreshTransactions();
-            await refreshDashboardOverview();
+            await fetchDashboardOverview();
 
             setNewTransaction({
                 date: new Date().toISOString().split("T")[0],
@@ -370,7 +371,7 @@ const Dashboard = () => {
                 <div className={dashboardStyles.headerContent}>
                     <div>
                         <h1 className={dashboardStyles.headerTitle}>
-                            Financial Card
+                            Finance Dashboard
                         </h1>
                         <p className={dashboardStyles.headerSubtitle}>
                             Track your income and expenses
@@ -427,7 +428,7 @@ const Dashboard = () => {
                         <div className={dashboardStyles.arrowDownIconContainer}>
                             <ArrowDown className="w-5 h-5 text-orange-600" />
                         </div>
-                    } label={`${timeFrameRange.label}Expenses`}
+                    } label={`${timeFrameRange.label} Expenses`}
                     value={`${Math.round(displayExpenses).toLocaleString()}`}
                     additionalContent={
                         <div className={`mt-2 text-xs flex items-center gap-1 ${expenseChange >= 0 ? trendStyles.positive : trendStyles.negative
@@ -453,7 +454,7 @@ const Dashboard = () => {
                         <div className={dashboardStyles.piggyBankIconContainer}>
                             <PiggyBank className="w-5 h-5 text-cyan-600" />
                         </div>
-                    } label={`${timeFrameRange.label}Savings`}
+                    } label={`${timeFrameRange.label} Savings`}
                     value={`${Math.round(displaySavings).toLocaleString()}`}
                     additionalContent={
                         <div className='mt-2 text-xs text-cyan-600 flex items-center gap-2'>
@@ -680,6 +681,12 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
+
+            <AddTransactionModal showModal={showModal} setShowModal={setShowModal}
+                newTransaction={newTransaction} setNewTransaction={setNewTransaction}
+                handleAddTransaction={handleAddTransaction}
+                loading={loading}
+            />
         </div>
     );
 };

@@ -698,7 +698,7 @@ export const styles = {
   categories: {
     title: "text-lg md:text-xl lg:text-xl xl:text-xl font-bold text-gray-800 mb-6 flex items-center gap-3",
     titleIcon: "w-6 h-6 text-cyan-500",
-    list: "space-y-4",
+    list: "space-y-4 mt-4",
     categoryItem: "flex items-center md:text-lg lg:text-sm xl:text-lg justify-between",
     categoryIconContainer: "bg-gray-100 p-2 rounded-lg",
     categoryIcon: "w-4 h-4 text-gray-600",
