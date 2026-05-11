@@ -438,7 +438,7 @@ const Layout = ({ onLogout, user }) => {//the props  passed to Layout will be pa
                                     return (
                                         <div key={id} className={styles.transactions.transactionItem}>
                                             <div className="flex items-center gap-1 md:gap-4 lg:gap-3">
-                                                <div className={`p-2 rounded-lg ${styles.colors.transactions.bg(type)}`}>
+                                                <div className={`p-2 rounded-lg ${styles.colors.transaction.bg(type)}`}>
                                                     {CATEGORY_ICONS[category] || (
                                                         <IndianRupeeIcon className={styles.transactions.icon} />
                                                     )}
