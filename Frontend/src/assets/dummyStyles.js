@@ -5,21 +5,21 @@ export const dashboardStyles = {
   container: "min-h-screen p-4 md:p-6",
 
   // Header styles
-  headerContainer: "bg-gradient-to-r from-teal-500/10 to-cyan-500/10 backdrop-blur-lg rounded-3xl p-6 mb-8 shadow-lg border border-white/30",
+  headerContainer: "bg-gradient-to-r from-[#7acb1f]/10 to-[#63b015]/10 backdrop-blur-lg rounded-3xl p-6 mb-8 shadow-lg border border-[#63b015]/10",
   headerContent: "flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8",
-  headerTitle: "text-3xl md:text-4xl font-bold bg-gradient-to-r from-teal-600 to-cyan-700 bg-clip-text text-transparent",
-  headerSubtitle: "text-gray-600 mt-2",
+  headerTitle: "text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#63b015] to-[#4e8e10] bg-clip-text text-transparent",
+  headerSubtitle: "text-[#5f6f52] mt-2",
 
   // Button styles
-  addButton: "flex items-center gap-2 bg-teal-500 hover:bg-teal-600 text-white px-5 py-3 rounded-xl transition-all shadow hover:shadow-md font-medium",
+  addButton: "flex items-center gap-2 bg-gradient-to-r from-[#7acb1f] to-[#63b015] hover:from-[#84d624] hover:to-[#5aa013] text-white px-5 py-3 rounded-xl transition-all shadow hover:shadow-md font-medium",
 
   // Time frame selector styles
   timeFrameContainer: "flex justify-end mt-4",
-  timeFrameWrapper: "flex gap-0 bg-white p-1 -mx-5 rounded-xl border border-gray-200",
+  timeFrameWrapper: "flex gap-0 bg-white p-1 -mx-5 rounded-xl border border-[#63b015]/20 shadow-sm",
   timeFrameButton: (isActive) =>
     `px-2.5 py-2 text-sm rounded-lg transition-all ${isActive
-      ? "bg-teal-500 text-white"
-      : "text-gray-600 hover:bg-gray-100"
+      ? "bg-gradient-to-r from-[#7acb1f] to-[#63b015] text-white shadow-sm"
+      : "text-gray-600 hover:bg-[#eef8e7]"
     }`,
 
   // Summary cards grid

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Profiler } from 'react';
 import { useState, useEffect } from 'react';
 import { Route, Routes, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import Layout from "./components/Layout";
@@ -6,6 +6,9 @@ import Dashboard from "./pages/Dashboard";
 import Login from './components/Login';
 import Signup from './components/Signup';
 import axios from 'axios';
+import Income from './pages/Income';
+import Expense from './pages/Expense';
+import Profile from './pages/Profile';
 
 
 const API_URL = "http://localhost:4000"
@@ -211,8 +214,43 @@ const App = () => {
             addTransaction={addTransaction}
             editTransaction={editTransaction}
             deleteTransaction={deleteTransaction}
-            refreshTransactions={refreshTransactions} /> {/*Dashboard will open inside layout */}
+            refreshTransactions={refreshTransactions}
+          /> {/*Dashboard will open inside layout */}
+          <Route path='/income'
+            element={
+              <Income
+                transactions={transactions}
+                addTransaction={addTransaction}
+                editTransaction={editTransaction}
+                deleteTransaction={deleteTransaction}
+                refreshTransactions={refreshTransactions}
+              />
+            }
+          />
+          <Route path='/expense'
+            element={
+              <Expense
+                transactions={transactions}
+                addTransaction={addTransaction}
+                editTransaction={editTransaction}
+                deleteTransaction={deleteTransaction}
+                refreshTransactions={refreshTransactions}
+              />
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Profile
+                user={user}
+                onUpdateProfile={updateUserData}
+                onLogout={handleLogout}
+              />
+            }
+          />
         </Route>
+
+        <Route path='*' element={<Navigate to={user ? "/" : "/login"} replace />} />
       </Routes>
     </>
   );
