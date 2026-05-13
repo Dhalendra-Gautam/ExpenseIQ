@@ -8,10 +8,14 @@ import expenseRouter from "./routes/expenseRoute.js";
 import dashboardRouter from "./routes/dashboardRoute.js";
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 //MIDDLEWARES
-app.use(cors());
+app.use(cors({
+    origin: ["https://expense-iq-seven.vercel.app/"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
@@ -29,5 +33,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server started on http://localhost:${port}`)
+    console.log(`Server started on port ${port}`)
 })
