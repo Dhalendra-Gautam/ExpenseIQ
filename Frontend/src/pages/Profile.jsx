@@ -7,7 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import axios from 'axios';
 
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
 
 Modal.setAppElement('#root');
 // Move PasswordInput component outside of ProfilePage to prevent recreation on every render

@@ -5,7 +5,7 @@ import { EyeOff, ArrowLeft, Mail, Lock, Eye, User } from 'lucide-react';
 import axios from 'axios';
 
 
-const SignUp = ({ API_URL = "http://localhost:4000", onSignup, }) => {
+const SignUp = ({ API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000", onSignup, }) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

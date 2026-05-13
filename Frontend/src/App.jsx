@@ -11,7 +11,7 @@ import Expense from './pages/Expense';
 import Profile from './pages/Profile';
 
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
 
 //TO GET TRANSACTIONS FROM LOCAL STORAGE
 const getTransactionsFromStorage = () => {

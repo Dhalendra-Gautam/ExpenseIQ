@@ -7,7 +7,7 @@ import { User } from 'lucide-react';
 import { LogOut } from 'lucide-react';
 import axios from 'axios'; //for making api call to backend server
 
-const BASE_URL = "http://localhost:4000/api"
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
 
 const Navbar = ({ user: propUser, onLogout }) => {//renaming user prop(now named as propUser) to avoid confusion
     const navigate = useNavigate();//hook to navigate between pages
