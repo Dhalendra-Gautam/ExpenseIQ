@@ -12,7 +12,8 @@ const port = process.env.PORT || 4000;
 
 //MIDDLEWARES
 app.use(cors({
-    origin: ["https://expense-iq-seven.vercel.app"],
+    origin: ["http://localhost:5173",
+        "https://expense-iq-seven.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
