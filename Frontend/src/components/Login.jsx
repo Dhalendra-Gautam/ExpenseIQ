@@ -16,7 +16,7 @@ const Login = ({ onLogin, API_URL = import.meta.env.VITE_API_URL || "http://loca
     //TO FETCH PROFILE
     const fetchProfile = async (token) => {
         if (!token) return null;
-        const res = await axios.get(`${API_URL}/api/users/me`, {
+        const res = await axios.get(`${API_URL}/users/me`, {
             headers: { Authorization: `Bearer ${token}` }
         });
         return res.data;
@@ -39,7 +39,7 @@ const Login = ({ onLogin, API_URL = import.meta.env.VITE_API_URL || "http://loca
         setIsLoading(true); //set loading to true
         try {
             const res = await axios.post(
-                `${API_URL}/api/user/login`,
+                `${API_URL}/user/login`,
                 { email, password },
                 { headers: { 'Content-Type': 'application/json' } }
             );
