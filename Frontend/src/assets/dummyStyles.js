@@ -273,10 +273,10 @@ export const profileStyles = {
   mainContainer: "bg-white -mx-7 rounded-2xl shadow-sm overflow-hidden",
 
   // Header styles
-  header: "bg-gradient-to-r from-teal-500 to-emerald-600 p-8 text-center",
+  header: "bg-gradient-to-r from-[#7acb1f] to-[#63b015] p-8 text-center",
   avatar: "w-24 h-24 mx-auto rounded-full bg-white/20 flex items-center justify-center mb-4",
   userName: "text-2xl font-bold text-white",
-  userEmail: "text-teal-100 mt-2",
+  userEmail: "text-[#eef8e7] mt-2",
 
   // Content styles
   content: "p-8 -mx-6.5",
@@ -285,18 +285,18 @@ export const profileStyles = {
   // Card styles
   card: "bg-gray-50 rounded-xl p-6",
   cardTitle: "text-xl font-semibold pb-3 text-gray-800 flex items-center",
-  icon: "w-5 h-5 mr-2 text-teal-600",
+  icon: "w-5 h-5 mr-2 text-[#63b015]",
 
   // Form styles
   label: "text-sm text-gray-500  block mb-1",
-  input: "w-full px-4 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-300 focus:border-teal-500",
-  inputWithError: "w-full px-4 py-2 bg-gray-50 border rounded-lg focus:ring-2 focus:ring-teal-300 focus:border-teal-500",
+  input: "w-full px-4 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#63b015]/30 focus:border-[#63b015]",
+  inputWithError: "w-full px-4 py-2 bg-gray-50 border rounded-lg focus:ring-2 focus:ring-[#63b015]/30 focus:border-[#63b015]",
 
   // Button styles
-  buttonPrimary: "flex-1 bg-gradient-to-r from-teal-500 to-emerald-600 text-white py-2.5 rounded-xl font-medium shadow-md",
+  buttonPrimary: "flex-1 bg-gradient-to-r from-[#7acb1f] to-[#63b015] hover:from-[#84d624] hover:to-[#5aa013] text-white py-2.5 rounded-xl font-medium shadow-md",
   buttonSecondary: "flex-1 py-2.5 border border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-100",
-  editButton: "text-teal-600 hover:text-teal-700 font-medium text-sm",
-  changeButton: "text-teal-600 hover:text-teal-700 font-medium lg:text-sm",
+  editButton: "text-[#63b015] hover:text-[#4e8e10] font-medium text-sm",
+  changeButton: "text-[#63b015] hover:text-[#4e8e10] font-medium lg:text-sm",
 
   // Security item
   securityItem: "flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200",
@@ -346,9 +346,9 @@ export const modalStyles = {
   // Color classes
   colorClasses: {
     teal: {
-      button: "bg-teal-500 hover:bg-teal-600",
-      ring: "focus:ring-teal-500",
-      typeButtonSelected: "bg-teal-500",
+      button: "bg-gradient-to-r from-[#7acb1f] to-[#63b015] hover:from-[#84d624] hover:to-[#5aa013]",
+      ring: "focus:ring-[#63b015]",
+      typeButtonSelected: "bg-[#63b015]",
     },
     orange: {
       button: "bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600",
