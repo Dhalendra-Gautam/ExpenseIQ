@@ -126,9 +126,9 @@ const Dashboard = () => {
     //to update the gauge data whenever the current time frame data changes
     useEffect(() => {
         const maxValues = {
-            income: Math.max(currentTimeFrameData.income, 5000), // on value 5000 gauge will be filled to max
-            expenses: Math.max(currentTimeFrameData.expenses, 3000),
-            savings: Math.max(Math.abs(currentTimeFrameData.savings), 2000),
+            income: Math.max(currentTimeFrameData.income, 50000), // on value 5000 gauge will be filled to max
+            expenses: Math.max(currentTimeFrameData.expenses, 30000),
+            savings: Math.max(Math.abs(currentTimeFrameData.savings), 20000),
         };
 
         setGaugeData([
@@ -414,10 +414,10 @@ const Dashboard = () => {
                     additionalContent={
                         <div className='flex items-center gap-2 mt-2 text-sm'>
                             <span className={dashboardStyles.balanceBadge}>
-                                +${Math.round(displayIncome).toLocaleString()}
+                                +₹{Math.round(displayIncome).toLocaleString()}
                             </span>
                             <span className={dashboardStyles.expenseBadge}>
-                                -${Math.round(displayExpenses).toLocaleString()}
+                                -₹{Math.round(displayExpenses).toLocaleString()}
                             </span>
                         </div>
                     }
