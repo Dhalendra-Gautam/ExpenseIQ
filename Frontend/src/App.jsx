@@ -12,7 +12,7 @@ import Profile from './pages/Profile';
 import AIInsights from './pages/AIInsights';
 
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
+const API_URL = import.meta.env.VITE_API_URL;
 
 //TO GET TRANSACTIONS FROM LOCAL STORAGE
 const getTransactionsFromStorage = () => {

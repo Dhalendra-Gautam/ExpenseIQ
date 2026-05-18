@@ -7,7 +7,7 @@ import { Car, Home, Utensils, ShoppingCart, Gift, Zap, Activity, ArrowUp, Credit
 import axios from 'axios'; //for making api call to backend server for sending and receiving data
 import { Outlet } from 'react-router-dom';
 
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
+const API_BASE = import.meta.env.VITE_API_URL;
 const CATEGORY_ICONS = { //assigning icons based on category
     Food: <Utensils className="w-4 h-4" />,
     Housing: <Home className="w-4 h-4" />,
