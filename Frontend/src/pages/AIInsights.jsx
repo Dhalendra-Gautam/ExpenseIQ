@@ -32,7 +32,7 @@ const AIInsights = () => {
         setLoading(true);
         try {
             const token = localStorage.getItem('token'); // Retrieve your stored JWT auth token
-            const response = await fetch(`${BASE_URL}/api/ai/insights`, {
+            const response = await fetch(`${BASE_URL}/ai/insights`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ const AIInsights = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`${BASE_URL}/api/ai/chat`, {
+            const response = await fetch(`${BASE_URL}/ai/chat`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
