@@ -1,3 +1,27 @@
+# Dependencies
+node_modules/
+
 # Environment variables
 .env
-node_modules    
+
+# Logs
+*.log
+
+# Build folders
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+.cache/
+
+# Excel exports (optional)
+*.xlsx
