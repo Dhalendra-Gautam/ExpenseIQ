@@ -568,7 +568,7 @@ export const sidebarStyles = {
   },
 
   menuIcon: {
-    active: "text-teal-600",
+    active: "text-[#63b015]",
     inactive: "text-gray-500"
   },
 

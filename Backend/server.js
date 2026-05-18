@@ -6,6 +6,7 @@ import userRouter from "./routes/userRoute.js";
 import incomeRouter from "./routes/incomeRoute.js";
 import expenseRouter from "./routes/expenseRoute.js";
 import dashboardRouter from "./routes/dashboardRoute.js";
+import aiRouter from "./routes/aiRoute.js";
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -28,6 +29,7 @@ app.use("/api/user", userRouter);
 app.use("/api/income", incomeRouter);
 app.use("/api/expense", expenseRouter);
 app.use("/api/dashboard", dashboardRouter);
+app.use("/api/ai", aiRouter); // New Route for AI Insights
 
 app.get('/', (req, res) => {
     res.send("API Working");

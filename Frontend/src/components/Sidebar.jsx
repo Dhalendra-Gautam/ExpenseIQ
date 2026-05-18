@@ -2,7 +2,7 @@ import React from 'react'
 import { sidebarStyles, cn } from "../assets/dummyStyles";
 import { AnimatePresence, motion } from "framer-motion"; //for Smooth animations
 import { Link, useLocation, useNavigate } from 'react-router-dom'; //link- change pages without reload, useLocation- tells current path e.g.'/income', useNavigate- change page programmatically
-import { Home, ArrowUp, ArrowDown, User, HelpCircle, LogOut, Menu, X } from "lucide-react";
+import { Home, ArrowUp, ArrowDown, User, HelpCircle, LogOut, Menu, X, SparklesIcon } from "lucide-react";
 import { useState, useRef, useEffect } from 'react';
 
 
@@ -10,6 +10,7 @@ const MENU_ITEMS = [
     { text: "Dashboard", path: "/", icon: <Home size={20} /> },
     { text: "Income", path: "/income", icon: <ArrowUp size={20} /> },
     { text: "Expenses", path: "/expense", icon: <ArrowDown size={20} /> },
+    { text: "AI Insights", path: "/ai-insights", icon: <SparklesIcon size={20} /> },
     { text: "Profile", path: "/profile", icon: <User size={20} /> },
 ];
 

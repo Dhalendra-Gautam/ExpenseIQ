@@ -9,6 +9,7 @@ import axios from 'axios';
 import Income from './pages/Income';
 import Expense from './pages/Expense';
 import Profile from './pages/Profile';
+import AIInsights from './pages/AIInsights';
 
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
@@ -238,6 +239,11 @@ const App = () => {
               />
             }
           />
+
+          <Route path="/ai-insights"
+            element={<AIInsights />}
+          />
+
           <Route
             path="/profile"
             element={
