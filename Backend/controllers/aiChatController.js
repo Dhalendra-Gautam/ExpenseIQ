@@ -54,6 +54,7 @@ export const handleAIChat = async (req, res) => {
           - DO NOT EVER say "I cannot answer that based on the dataset" or "refer to your dashboard". You have the data right here.
           - Keep responses exceptionally sharp, actionable, and concise (Strict limit of 2-3 short sentences).
           - Be friendly, professional, and explain complex things easily in plain English.
+          - CURRENCY: ALWAYS use the Indian Rupee symbol (₹) for all monetary values. NEVER use the dollar ($) sign. Format amounts with commas (e.g., ₹20,000).
         `
             }
         });

@@ -27,10 +27,20 @@ const AIInsights = () => {
         scrollToBottom();
     }, [chatMessages, chatLoading]);
 
-    // Fetch live 90-day analytics from the backend
-    const fetchAIInsights = async () => {
+    // Fetch live 90-day analytics from the backend with Caching Logic
+    const fetchAIInsights = async (forceRefresh = false) => {
         setLoading(true);
         try {
+            // CACHE LOGIC: Agar forceRefresh false hai, check LocalStorage first
+            if (!forceRefresh) {
+                const cachedInsights = localStorage.getItem('expenseIQ_ai_cache');
+                if (cachedInsights) {
+                    setAiData(JSON.parse(cachedInsights));
+                    setLoading(false);
+                    return; // Cache found, skip the API call!
+                }
+            }
+
             const token = localStorage.getItem('token'); // Retrieve your stored JWT auth token
             const response = await fetch(`${BASE_URL}/ai/insights`, {
                 method: 'GET',
@@ -43,6 +53,8 @@ const AIInsights = () => {
 
             if (response.ok) {
                 setAiData(data);
+                // CACHE LOGIC: Save the fresh data to LocalStorage for future visits
+                localStorage.setItem('expenseIQ_ai_cache', JSON.stringify(data));
             } else {
                 console.error("Failed to fetch insights:", data.error);
             }
@@ -53,7 +65,7 @@ const AIInsights = () => {
         }
     };
 
-    // Load initial configuration insights on component load
+    // Load initial configuration insights on component load (defaults to false -> uses cache if available)
     useEffect(() => {
         fetchAIInsights();
     }, []);
@@ -113,8 +125,9 @@ const AIInsights = () => {
                         </h1>
                         <p className={`${dashboardStyles.headerSubtitle} ml-1`}>AI-powered predictions and financial health tracking.</p>
                     </div>
+                    {/* BUTTON UPDATED: Passes `true` to force an API call and refresh cache */}
                     <button
-                        onClick={fetchAIInsights}
+                        onClick={() => fetchAIInsights(true)}
                         disabled={loading}
                         className={`${dashboardStyles.addButton} disabled:opacity-50 flex items-center gap-2`}
                     >
@@ -260,7 +273,7 @@ const AIInsights = () => {
                             <div className={`h-8 w-8 md:h-10 md:w-10 rounded-full flex items-center justify-center shrink-0 shadow-sm ${msg.sender === 'user' ? 'bg-gray-800 text-white' : 'bg-[#63b015] text-white'}`}>
                                 {msg.sender === 'user' ? <User size={16} /> : <Bot size={16} />}
                             </div>
-                            <div className={`max-w-[85%] md:max-w-[75%] p-3 md:p-4 rounded-2xl text-sm md:text-base leading-relaxed shadow-sm ${msg.sender === 'user'
+                            <div className={`whitespace-pre-wrap max-w-[85%] md:max-w-[75%] p-3 md:p-4 rounded-2xl text-sm md:text-base leading-relaxed shadow-sm ${msg.sender === 'user'
                                 ? 'bg-gray-800 text-white rounded-br-sm'
                                 : 'bg-white text-gray-700 border border-gray-100 rounded-bl-sm'
                                 }`}>

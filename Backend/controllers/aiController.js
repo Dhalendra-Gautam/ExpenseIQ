@@ -81,8 +81,8 @@ export const getAIInsights = async (req, res) => {
         },
         "recommendations": [
           { 
-            "title": "string (A crisp action-oriented goal title, e.g., 'Consolidate Food Deliveries')", 
-            "desc": "string (A 1-sentence advisory note explaining how to optimize this sector, written clearly in English)", 
+            "title": "string (Max 3-4 words, e.g., 'Stop Food Deliveries')", 
+            "desc": "string (Strictly 1 short sentence, max 10-12 words. Plain text only, no formatting)", 
             "level": "High Impact / Medium Impact / Smart Save" 
           }
         ],
