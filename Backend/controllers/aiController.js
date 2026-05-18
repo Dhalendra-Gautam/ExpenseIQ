@@ -8,7 +8,7 @@ const ai = new GoogleGenAI({});
 
 export const getAIInsights = async (req, res) => {
     try {
-        const userId = req.user.id; // Retrieved via your Auth middleware
+        const userId = req.user._id; // Retrieved via your Auth middleware
 
         // Fetching the last 90 days of data to provide enough depth for pattern identification
         const ninetyDaysAgo = new Date();
@@ -16,26 +16,31 @@ export const getAIInsights = async (req, res) => {
 
         // 1. Fetch data in parallel from both collections to minimize latency
         const [expenses, incomes] = await Promise.all([
-            Expense.find({ user: userId, date: { $gte: ninetyDaysAgo } }).sort({ date: -1 }),
-            Income.find({ user: userId, date: { $gte: ninetyDaysAgo } }).sort({ date: -1 })
+            Expense.find({ userId: userId, date: { $gte: ninetyDaysAgo } }).sort({ date: -1 }),
+            Income.find({ userId: userId, date: { $gte: ninetyDaysAgo } }).sort({ date: -1 })
         ]);
 
         // Edge Case: If it is a completely new user with no financial history
         if (expenses.length === 0 && incomes.length === 0) {
             return res.status(200).json({
                 summary: [
-                    "Welcome to ExpenseIQ AI! Your financial dashboard is ready.",
-                    "Start logging your daily income and expenses so the AI engine can analyze your habits."
+                    "Cannot generate AI Pulse right now due to insufficient data.",
+                    "Please log your recent incomes and expenses to activate insights.",
+                    "AI requires a few transactions to identify your spending patterns."
                 ],
                 prediction: {
                     expense: "₹0",
                     savings: "₹0",
-                    trend: "Insufficient data history"
+                    trend: "Need more data to predict"
                 },
                 recommendations: [
-                    { title: "Log your first transaction", desc: "Navigate to the transactions panel to record your initial income or expense stream.", level: "Smart Save" }
+                    {
+                        title: "Data Required for Analysis",
+                        desc: "AI cannot provide recommendations yet. Go to the dashboard and add your first transaction.",
+                        level: "High Impact"
+                    }
                 ],
-                healthScore: 100
+                healthScore: 0 // No data means 0 score, UI bar will stay empty which looks accurate
             });
         }
 
