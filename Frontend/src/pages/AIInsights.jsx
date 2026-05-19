@@ -114,7 +114,7 @@ const AIInsights = () => {
         <div className="min-h-screen p-4 md:p-6 lg:p-8 max-w-7xl mx-auto space-y-6 md:space-y-8">
 
             {/* 1. Header Section */}
-            <div className={`${dashboardStyles.headerContainer} shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500`}>
+            <div className={`${dashboardStyles.headerContainer}`}>
                 <div className={dashboardStyles.headerContent}>
                     <div>
                         <h1 className={`${dashboardStyles.headerTitle} flex items-center gap-3`}>
@@ -129,7 +129,7 @@ const AIInsights = () => {
                     <button
                         onClick={() => fetchAIInsights(true)}
                         disabled={loading}
-                        className={`${dashboardStyles.addButton} disabled:opacity-50 flex items-center gap-2`}
+                        className={`${dashboardStyles.addButton} disabled:opacity-50 flex items-center gap-2 hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}
                     >
                         <RefreshCw size={18} className={loading ? 'animate-spin' : ''} />
                         {loading ? 'Analyzing...' : 'Re-Analyze'}
@@ -163,7 +163,7 @@ const AIInsights = () => {
                                             <div className="h-8 w-8 rounded-full bg-[#eef8e7] flex items-center justify-center text-[#63b015] shrink-0 group-hover:bg-[#63b015] group-hover:text-white transition-all duration-300">
                                                 <TrendingUp size={14} />
                                             </div>
-                                            <p className="text-base md:text-lg font-medium text-gray-700 leading-relaxed">{text}</p>
+                                            <p className=" font-sans text-base md:text-lg font-medium text-gray-700 leading-relaxed" style={{ fontFamily: 'inherit' }}>{text}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -186,7 +186,7 @@ const AIInsights = () => {
                                     style={{ width: `${aiData?.healthScore ?? 0}%` }}
                                 ></div>
                             </div>
-                            <p className="text-gray-500 text-sm mt-4 font-medium italic">
+                            <p className="font-sans text-gray-500 text-sm mt-4 font-medium italic" style={{ fontFamily: 'inherit' }}>
                                 {aiData?.healthScore > 75 ? '"Excellent: Your capital accumulation structure looks highly efficient."' : '"Stable: Analyze targeted areas to increase your net velocity margins."'}
                             </p>
                         </div>
@@ -214,7 +214,7 @@ const AIInsights = () => {
                                     </div>
                                     <div className="bg-orange-50 p-4 md:p-5 rounded-2xl border border-orange-100 flex-1 flex flex-col items-center justify-center text-center">
                                         <p className="text-xs text-orange-600 font-bold mb-1 uppercase tracking-wider whitespace-nowrap">Spending Trend</p>
-                                        <p className="text-xs font-bold text-orange-600 flex items-center justify-center gap-1">
+                                        <p className="font-sans text-xs font-bold text-orange-600 flex items-center justify-center gap-1" style={{ fontFamily: 'inherit' }}>
                                             {aiData?.prediction?.trend || "Calculating trajectory..."}
                                         </p>
                                     </div>
@@ -231,11 +231,11 @@ const AIInsights = () => {
                                 {aiData?.recommendations?.map((item, idx) => (
                                     <div key={idx} className="bg-gray-50 p-4 rounded-2xl border border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group hover:border-[#7acb1f]/50 hover:bg-[#f8fcf5] transition-all cursor-default">
                                         <div>
-                                            <h4 className="font-bold text-gray-800 text-sm">{item.title}</h4>
-                                            <p className="text-xs text-gray-500 mt-1 leading-snug">{item.desc}</p>
+                                            <h4 className="font-sans font-bold text-gray-800 text-sm" style={{ fontFamily: 'inherit' }}>{item.title}</h4>
+                                            <p className="font-sans text-xs text-gray-500 mt-1 leading-snug" style={{ fontFamily: 'inherit' }}>{item.desc}</p>
                                         </div>
-                                        <span className={`shrink-0 generals-badge self-start sm:self-auto bg-white text-[10px] md:text-xs font-black px-2 py-1 rounded-lg border uppercase transition-colors ${item.level === 'High Impact' ? 'text-rose-600 border-rose-100 bg-rose-50' :
-                                            item.level === 'Medium Impact' ? 'text-amber-600 border-amber-100 bg-amber-50' : 'text-sky-600 border-sky-100 bg-sky-50'
+                                        <span className={`shrink-0 generals-badge self-start sm:self-auto text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-lg border uppercase transition-colors ${item.level === 'High Impact' ? 'text-rose-500 border-rose-100/50 bg-rose-50/50' :
+                                            item.level === 'Medium Impact' ? 'text-amber-500 border-amber-100/50 bg-amber-50/50' : 'text-sky-500 border-sky-100/50 bg-sky-50/50'
                                             }`}>
                                             {item.level.split(" ")[0]}
                                         </span>
@@ -270,11 +270,11 @@ const AIInsights = () => {
                 <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 md:space-y-6 bg-gray-50/50">
                     {chatMessages.map((msg, index) => (
                         <div key={index} className={`flex items-end gap-2 md:gap-3 ${msg.sender === 'user' ? 'flex-row-reverse' : ''}`}>
-                            <div className={`h-8 w-8 md:h-10 md:w-10 rounded-full flex items-center justify-center shrink-0 shadow-sm ${msg.sender === 'user' ? 'bg-gray-800 text-white' : 'bg-[#63b015] text-white'}`}>
+                            <div className={`h-8 w-8 md:h-10 md:w-10 rounded-full flex items-center justify-center shrink-0 shadow-sm ${msg.sender === 'user' ? 'bg-[#eef8e7] text-[#63b015]' : 'bg-[#63b015] text-white'}`}>
                                 {msg.sender === 'user' ? <User size={16} /> : <Bot size={16} />}
                             </div>
                             <div className={`whitespace-pre-wrap max-w-[85%] md:max-w-[75%] p-3 md:p-4 rounded-2xl text-sm md:text-base leading-relaxed shadow-sm ${msg.sender === 'user'
-                                ? 'bg-gray-800 text-white rounded-br-sm'
+                                ? 'bg-[#eef8e7] text-gray-800 rounded-br-sm'
                                 : 'bg-white text-gray-700 border border-gray-100 rounded-bl-sm'
                                 }`}>
                                 {msg.text}

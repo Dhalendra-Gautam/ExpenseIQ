@@ -15,7 +15,7 @@ export const handleAIChat = async (req, res) => {
         }
 
         // 1. FETCH USER DATA FOR THE CHATBOT
-        // Chatbot ko bhi pichle 90 din ka context dena zaroori hai
+        // Chatbot is given 90 days data
         const ninetyDaysAgo = new Date();
         ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
 
