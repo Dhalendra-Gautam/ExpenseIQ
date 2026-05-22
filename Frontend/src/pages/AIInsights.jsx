@@ -306,12 +306,12 @@ const AIInsights = () => {
                         onChange={(e) => setChatInput(e.target.value)}
                         disabled={chatLoading}
                         placeholder={chatLoading ? "AI is processing..." : "E.g. How much did I spend on food last week?"}
-                        className="flex-1 bg-gray-50 border border-gray-200 rounded-xl md:rounded-2xl px-4 md:px-5 py-3 md:py-4 text-sm md:text-base focus:ring-2 focus:ring-[#63b015]/50 focus:border-[#63b015] outline-none transition-all disabled:opacity-50"
+                        className="flex-1 min-w-0 bg-gray-50 border border-gray-200 rounded-xl md:rounded-2xl px-4 md:px-5 py-3 md:py-4 text-sm md:text-base focus:ring-2 focus:ring-[#63b015]/50 focus:border-[#63b015] outline-none transition-all disabled:opacity-50"
                     />
                     <button
                         type="submit"
                         disabled={chatLoading || !chatInput.trim()}
-                        className="bg-gradient-to-r from-[#7acb1f] to-[#63b015] hover:from-[#84d624] hover:to-[#5aa013] text-white px-5 md:px-6 rounded-xl md:rounded-2xl transition-all flex items-center justify-center shadow-md disabled:opacity-50"
+                        className="shrink-0 bg-gradient-to-r from-[#7acb1f] to-[#63b015] hover:from-[#84d624] hover:to-[#5aa013] text-white px-4 md:px-6 rounded-xl md:rounded-2xl transition-all flex items-center justify-center shadow-md disabled:opacity-50"
                     >
                         <Send size={20} />
                     </button>
