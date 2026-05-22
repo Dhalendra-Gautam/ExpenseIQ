@@ -363,7 +363,7 @@ export const modalStyles = {
 // In src/assets/dummyStyles.js - add these styles
 export const loginStyles = {
   // Page container
-  pageContainer: "min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-teal-50 to-emerald-50",
+  pageContainer: "min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#f4faee] to-[#eef8e7]",
 
   // Card container
   cardContainer: "w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden",
