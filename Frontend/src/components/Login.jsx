@@ -174,7 +174,6 @@ const Login = ({ onLogin, API_URL = import.meta.env.VITE_API_URL || "http://loca
                                 checked={rememberMe}
                                 onChange={(e) => setRememberMe(e.target.checked)}
                                 className={loginStyles.checkbox}
-                                required
                             />
                             <label htmlFor="remember" className={loginStyles.checkboxLabel}>
                                 Remember me

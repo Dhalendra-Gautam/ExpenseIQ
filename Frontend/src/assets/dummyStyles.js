@@ -402,7 +402,7 @@ export const loginStyles = {
   // Sign up link
   signUpContainer: "mt-8 text-center",
   signUpText: "text-gray-600",
-  signUpLink: "font-medium text-teal-600 hover:underline",
+  signUpLink: "font-medium text-[#63b015] hover:underline",
 
   // Spinner for loading state
   spinner: "animate-spin -ml-1 mr-3 h-5 w-5 text-white"
@@ -425,7 +425,7 @@ export const navbarStyles = {
   userContainer: "relative",
   userButton: "flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors",
   userAvatar: "w-9 h-9 flex items-center justify-center rounded-full bg-gradient-to-br from-[#63b015] to-[#4e8e10] text-white font-bold text-lg",
-  statusIndicator: "absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white",
+  statusIndicator: "absolute -bottom-1 -right-1 w-3 h-3 bg-[#63b015] rounded-full border-2 border-white",
   userTextContainer: "text-left hidden md:block",
   userName: "text-sm font-medium text-gray-800 truncate max-w-[120px]",
   userEmail: "text-xs text-gray-500 truncate max-w-[120px]",
@@ -449,7 +449,7 @@ export const navbarStyles = {
 // In src/assets/dummyStyles.js - add these styles
 export const signupStyles = {
   // Page container (reusing from login)
-  pageContainer: "min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-teal-50 to-emerald-50",
+  pageContainer: "min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#f4faee] to-[#eef8e7]",
 
   // Card container (reusing from login)
   cardContainer: "w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden",
@@ -488,7 +488,7 @@ export const signupStyles = {
   // Sign in link (reusing from login with modifications)
   signInContainer: "mt-8 text-center",
   signInText: "text-gray-600",
-  signInLink: "font-medium text-teal-600 hover:underline",
+  signInLink: "font-medium text-[#63b015] hover:underline",
 
   // Spinner for loading state (reusing from login)
   spinner: "animate-spin -ml-1 mr-3 h-5 w-5 text-white"
