@@ -27,11 +27,11 @@ const AIInsights = () => {
         scrollToBottom();
     }, [chatMessages, chatLoading]);
 
-    // Fetch live 90-day analytics from the backend with Caching Logic
+    // Fetching live 90-day analytics from the backend with Caching Logic
     const fetchAIInsights = async (forceRefresh = false) => {
         setLoading(true);
         try {
-            // CACHE LOGIC: Agar forceRefresh false hai, check LocalStorage first
+            // CACHE LOGIC: IF forceRefresh is false, check LocalStorage first
             if (!forceRefresh) {
                 const cachedInsights = localStorage.getItem('expenseIQ_ai_cache');
                 if (cachedInsights) {

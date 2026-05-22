@@ -562,7 +562,7 @@ export const sidebarStyles = {
   menuItem: {
     base: "relative flex items-center gap-3 py-3 rounded-xl font-medium transition-all duration-200",
     active: "text-[#63b015] bg-[#eef8e7]",
-    inactive: "text-gray-600 hover:text-teal-700 hover:bg-gray-50",
+    inactive: "text-gray-600 hover:text-[#63b015] hover:bg-[#f4faee]",
     collapsed: "justify-center px-0 mx-2",
     expanded: "px-4"
   },
@@ -576,7 +576,7 @@ export const sidebarStyles = {
 
   // Toggle button
   toggleButton: {
-    base: "absolute -right-3 top-12 z-20 w-6 h-6 bg-white border border-gray-300 rounded-full flex items-center justify-center text-gray-500 hover:text-teal-600 hover:border-teal-400 hover:bg-teal-50 transition-all"
+    base: "absolute -right-3 top-12 z-20 w-6 h-6 bg-white border border-[#63b015]/30 rounded-full flex items-center justify-center text-gray-500 hover:text-[#63b015] hover:border-[#63b015] hover:bg-[#eef8e7] transition-all"
   },
 
   // Footer section
@@ -587,12 +587,12 @@ export const sidebarStyles = {
   },
 
   footerLink: {
-    base: "flex items-center gap-3 py-2 rounded-xl font-medium text-gray-600 hover:text-teal-700 hover:bg-gray-50",
+    base: "flex items-center gap-3 w-full px-4 py-2 rounded-xl font-medium text-gray-600 hover:text-[#63b015] hover:bg-[#f4faee] transition-all",
     collapsed: "justify-center"
   },
 
   logoutButton: {
-    base: "flex items-center gap-3 py-2 rounded-xl font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 w-full mt-1",
+    base: "flex items-center gap-3 w-full px-4 py-2 rounded-xl font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 w-full mt-1",
     collapsed: "justify-center"
   },
 
@@ -611,16 +611,16 @@ export const sidebarStyles = {
   mobileMenuList: "space-y-1",
   mobileMenuItem: {
     base: "flex items-center gap-4 px-6 py-4 font-medium",
-    active: "text-teal-600 bg-teal-50",
-    inactive: "text-gray-600 hover:bg-gray-50"
+    active: "text-[#63b015] bg-[#eef8e7]",
+    inactive: "text-gray-600 hover:bg-[#f4faee]"
   },
 
-  mobileFooter: "border-t border-gray-100 p-6",
-  mobileFooterLink: "flex items-center gap-4 py-2 font-medium text-gray-600 hover:text-teal-700",
-  mobileLogoutButton: "flex items-center gap-4 py-2 font-medium text-gray-600 hover:text-red-600 w-full",
+  mobileFooter: "border-t border-gray-100 py-6",
+  mobileFooterLink: "flex items-center gap-4 px-6 py-4 font-medium text-gray-600 hover:text-[#63b015] hover:bg-[#f4faee]",
+  mobileLogoutButton: "flex items-center gap-4 w-full px-4 py-2 mt-2 font-medium text-gray-600 hover:text-red-600 hover:bg-red-50",
 
   // Mobile menu button
-  mobileMenuButton: "lg:hidden fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-cyan-500 to-teal-600 text-white rounded-full flex items-center justify-center shadow-xl"
+  mobileMenuButton: "lg:hidden fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-[#7acb1f] to-[#63b015] text-white rounded-full flex items-center justify-center shadow-xl"
 };
 
 // Helper function to combine class names

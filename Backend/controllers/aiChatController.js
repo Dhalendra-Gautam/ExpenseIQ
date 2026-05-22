@@ -14,7 +14,7 @@ export const handleAIChat = async (req, res) => {
             return res.status(400).json({ error: "Message content is required" });
         }
 
-        // 1. FETCH USER DATA FOR THE CHATBOT
+        // FETCH USER DATA FOR THE CHATBOT
         // Chatbot is given 90 days data
         const ninetyDaysAgo = new Date();
         ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
@@ -24,19 +24,19 @@ export const handleAIChat = async (req, res) => {
             Income.find({ userId: userId, date: { $gte: ninetyDaysAgo } }).sort({ date: -1 })
         ]);
 
-        // Format data so Gemini can easily parse and calculate
+        // Format data so AI can easily parse and calculate
         const financialData = {
             expenses: expenses.map(e => ({ amount: e.amount, category: e.category, date: e.date, description: e.description })),
             incomes: incomes.map(i => ({ amount: i.amount, category: i.category, date: i.date, description: i.description }))
         };
 
-        // 2. Format Chat History
+        // Format Chat History
         const formattedHistory = (history || []).map(msg => ({
             role: msg.sender === 'user' ? 'user' : 'model',
             parts: [{ text: msg.text }]
         }));
 
-        // 3. System Instructions with injected LIVE DATA
+        // System Instructions with injected LIVE DATA
         const chat = ai.chats.create({
             model: 'gemini-2.5-flash',
             history: formattedHistory,
@@ -59,13 +59,13 @@ export const handleAIChat = async (req, res) => {
             }
         });
 
-        // 4. Send Message to Gemini
+        // Sending  Message to AI
         const result = await chat.sendMessage({ message: message });
 
         return res.status(200).json({ text: result.text });
 
     } catch (error) {
-        console.error("Gemini Chatbot Terminal Controller Error:", error);
+        console.error("Chatbot Model Terminal Controller Error:", error);
         return res.status(500).json({
             error: "The chat terminal is currently experiencing network latency. Please query again."
         });
