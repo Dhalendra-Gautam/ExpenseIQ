@@ -146,7 +146,7 @@ const AIInsights = () => {
             ) : (
                 <>
                     {/* 2. Top Summary & Prediction Grid */}
-                    <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
+                    <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
 
                         {/* Quick AI Pulse (Left) */}
                         <div className="xl:col-span-7 bg-white rounded-3xl p-6 md:p-8 text-gray-800 relative overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100">
@@ -171,7 +171,7 @@ const AIInsights = () => {
                         </div>
 
                         {/* Financial Health Score (Right) */}
-                        <div className="xl:col-span-5 bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-center">
+                        <div className="xl:col-span-5 bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                             <div className="flex justify-between items-start mb-6">
                                 <h3 className="text-gray-400 font-bold text-xs md:text-sm uppercase tracking-widest">Financial Health</h3>
                                 <ShieldCheck className="text-[#63b015]" size={20} />
@@ -193,28 +193,28 @@ const AIInsights = () => {
                     </div>
 
                     {/* 3. Prediction & Recommendation Grid */}
-                    <div className="grid grid-cols-1 lg:grid-cols-[repeat(auto-fit,minmax(min(100%,450px),1fr))] gap-6 md:gap-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-start">
 
                         {/* Spending Prediction */}
-                        <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
-                            <h3 className="text-gray-400 font-bold text-xs md:text-sm uppercase tracking-widest mb-6">
+                        <div className="bg-white rounded-3xl p-5 md:p-6 border border-gray-100 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                            <h3 className="text-gray-400 font-bold text-xs md:text-sm uppercase tracking-widest mb-4">
                                 Spending Prediction 📈
                             </h3>
 
-                            <div className="flex-1 flex flex-col justify-center gap-6">
-                                <div className="bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-100 text-center flex flex-col justify-center w-full">
+                            <div className="flex-1 flex flex-col justify-center gap-4">
+                                <div className="bg-gray-50 rounded-2xl p-5 md:p-6 border border-gray-100 text-center flex flex-col justify-center w-full">
                                     <p className="text-sm md:text-base text-gray-500 mb-2 font-medium">Estimated Total for this Month</p>
                                     <p className="text-4xl md:text-5xl font-black text-gray-800 tracking-tight">{aiData?.prediction?.expense}</p>
                                 </div>
 
-                                <div className="flex flex-col xl:flex-row gap-4 w-full">
-                                    <div className="bg-eef8e7 p-4 md:p-5 rounded-2xl border border-[#63b015]/20 flex-1 flex flex-col items-center justify-center text-center bg-[#eef8e7]">
-                                        <p className="text-xs text-[#63b015] font-bold mb-1 uppercase tracking-wider whitespace-nowrap">Potential Savings</p>
-                                        <p className="text-xl md:text-2xl font-black text-[#63b015]">{aiData?.prediction?.savings}</p>
+                                <div className="grid grid-cols-2 gap-3 md:gap-4 w-full">
+                                    <div className="bg-[#eef8e7] p-3 md:p-4 rounded-2xl border border-[#63b015]/20 flex flex-col items-center justify-center text-center">
+                                        <p className="text-[10px] md:text-xs text-[#63b015] font-bold mb-1 uppercase tracking-wider text-center">Potential Savings</p>
+                                        <p className="text-lg md:text-xl font-black text-[#63b015]">{aiData?.prediction?.savings}</p>
                                     </div>
-                                    <div className="bg-orange-50 p-4 md:p-5 rounded-2xl border border-orange-100 flex-1 flex flex-col items-center justify-center text-center">
-                                        <p className="text-xs text-orange-600 font-bold mb-1 uppercase tracking-wider whitespace-nowrap">Spending Trend</p>
-                                        <p className="font-sans text-xs font-bold text-orange-600 flex items-center justify-center gap-1" style={{ fontFamily: 'inherit' }}>
+                                    <div className="bg-orange-50 p-3 md:p-4 rounded-2xl border border-orange-100 flex flex-col items-center justify-center text-center">
+                                        <p className="text-[10px] md:text-xs text-orange-600 font-bold mb-1 uppercase tracking-wider text-center">Spending Trend</p>
+                                        <p className="font-sans text-[10px] md:text-xs font-bold text-orange-600 flex items-center justify-center gap-1 text-center" style={{ fontFamily: 'inherit' }}>
                                             {aiData?.prediction?.trend || "Calculating trajectory..."}
                                         </p>
                                     </div>
@@ -223,18 +223,18 @@ const AIInsights = () => {
                         </div>
 
                         {/* AI Action Steps */}
-                        <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
-                            <h3 className="text-gray-400 font-bold text-xs md:text-sm uppercase tracking-widest mb-6 flex items-center gap-2">
+                        <div className="bg-white rounded-3xl p-5 md:p-6 border border-gray-100 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                            <h3 className="text-gray-400 font-bold text-xs md:text-sm uppercase tracking-widest mb-4 flex items-center gap-2">
                                 <Lightbulb size={16} className="text-orange-500" /> Targeted AI Action Steps
                             </h3>
-                            <div className="space-y-4 flex-1 flex flex-col justify-center">
+                            <div className="space-y-3 flex-1 flex flex-col justify-center">
                                 {aiData?.recommendations?.map((item, idx) => (
-                                    <div key={idx} className="bg-gray-50 p-4 rounded-2xl border border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group hover:border-[#7acb1f]/50 hover:bg-[#f8fcf5] transition-all cursor-default">
+                                    <div key={idx} className="bg-gray-50 p-3 md:p-4 rounded-2xl border border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 group hover:border-[#7acb1f]/50 hover:bg-[#f8fcf5] transition-all cursor-default">
                                         <div>
                                             <h4 className="font-sans font-bold text-gray-800 text-sm" style={{ fontFamily: 'inherit' }}>{item.title}</h4>
-                                            <p className="font-sans text-xs text-gray-500 mt-1 leading-snug" style={{ fontFamily: 'inherit' }}>{item.desc}</p>
+                                            <p className="font-sans text-xs text-gray-500 mt-0.5 leading-snug" style={{ fontFamily: 'inherit' }}>{item.desc}</p>
                                         </div>
-                                        <span className={`shrink-0 generals-badge self-start sm:self-auto text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-lg border uppercase transition-colors ${item.level === 'High Impact' ? 'text-rose-500 border-rose-100/50 bg-rose-50/50' :
+                                        <span className={`shrink-0 generals-badge self-start sm:self-auto text-[10px] md:text-[11px] font-bold px-2 py-1 rounded-md border uppercase transition-colors ${item.level === 'High Impact' ? 'text-rose-500 border-rose-100/50 bg-rose-50/50' :
                                             item.level === 'Medium Impact' ? 'text-amber-500 border-amber-100/50 bg-amber-50/50' : 'text-sky-500 border-sky-100/50 bg-sky-50/50'
                                             }`}>
                                             {item.level.split(" ")[0]}
